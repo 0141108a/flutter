@@ -1,0 +1,7 @@
+name: flutter_2026_course
+description: "Practice 2 - Dart Domain Modeling"
+version: 1.0.0
+publish_to: 'none'
+
+environment:
+  sdk: ^3.0.0
