@@ -20,7 +20,7 @@ class _StopwatchCardState extends State<StopwatchCard> {
   }
 
   void _start() {
-    if (_timer != null) return; // уже идёт — не создаём второй
+    if (_timer != null) return;
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() => _seconds++);
     });

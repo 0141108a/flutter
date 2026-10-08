@@ -9,10 +9,7 @@ class ContactList extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Column(
     children: [
-      const Padding(
-        padding: EdgeInsets.all(16),
-        child: Text('20 contacts'),
-      ),
+      const Padding(padding: EdgeInsets.all(16), child: Text('20 contacts')),
       Expanded(
         child: ListView.separated(
           padding: const EdgeInsets.all(16),

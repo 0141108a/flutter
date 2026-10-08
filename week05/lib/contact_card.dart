@@ -33,11 +33,17 @@ class ContactCard extends StatelessWidget {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: colorScheme.error,
-                        border: Border.all(color: colorScheme.surface, width: 2),
+                        border: Border.all(
+                          color: colorScheme.surface,
+                          width: 2,
+                        ),
                       ),
                       child: Text(
                         '${contact.unread}',
-                        style: TextStyle(color: colorScheme.onError, fontSize: 10),
+                        style: TextStyle(
+                          color: colorScheme.onError,
+                          fontSize: 10,
+                        ),
                       ),
                     ),
                   ),

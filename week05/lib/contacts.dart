@@ -8,12 +8,26 @@ class Contact {
 }
 
 const _names = [
-  'Aida Akhmetova', 'Dias Nurlanov', 'Madina Serik', 'Alikhan Bekov',
-  'Sultanmakhmutova-Bekzhanova Aigerim-Madina Nurlanovna', 'Arman Kairat',
-  'Zhanel Tolegen', 'Nurlan Abdi', 'Kamila Dosym', 'Yerlan Sadyk',
-  'Aruzhan Mukhtar', 'Timur Zhaksylyk', 'Dana Orazbek', 'Sanzhar Kenzhe',
-  'Amina Talgat', 'Bekzat Ospan', 'Inkar Rakhim', 'Daniyar Amir',
-  'Ayan Bolat', 'Tomiris Serikbay',
+  'Aida Akhmetova',
+  'Dias Nurlanov',
+  'Madina Serik',
+  'Alikhan Bekov',
+  'Sultanmakhmutova-Bekzhanova Aigerim-Madina Nurlanovna',
+  'Arman Kairat',
+  'Zhanel Tolegen',
+  'Nurlan Abdi',
+  'Kamila Dosym',
+  'Yerlan Sadyk',
+  'Aruzhan Mukhtar',
+  'Timur Zhaksylyk',
+  'Dana Orazbek',
+  'Sanzhar Kenzhe',
+  'Amina Talgat',
+  'Bekzat Ospan',
+  'Inkar Rakhim',
+  'Daniyar Amir',
+  'Ayan Bolat',
+  'Tomiris Serikbay',
 ];
 
 final contacts = [
