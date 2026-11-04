@@ -1,43 +1,75 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'cart_badge.dart';
-import 'main.dart';
+import 'models/book.dart';
+import 'models/cart.dart';
 
-class BooksScreen extends StatelessWidget {
-  const BooksScreen({
-    super.key,
-    required this.cart,
-    required this.onAdd,
-    required this.total,
-  });
+class BooksScreen extends StatefulWidget {
+  const BooksScreen({super.key});
 
-  final List<Book> cart;
-  final void Function(Book) onAdd;
-  final int total;
+  @override
+  State<BooksScreen> createState() => _BooksScreenState();
+}
+
+class _BooksScreenState extends State<BooksScreen> {
+  String _query = '';
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('BooksScreen build');
+    final q = _query.trim().toLowerCase();
+    final shown = books
+        .where(
+          (b) =>
+              b.title.toLowerCase().contains(q) ||
+              b.author.toLowerCase().contains(q),
+        )
+        .toList();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Books'),
-        actions: [CartBadge(count: cart.length, total: total)],
+        title: TextField(
+          onChanged: (v) => setState(() => _query = v),
+          decoration: const InputDecoration(
+            hintText: 'Search books',
+            border: InputBorder.none,
+          ),
+        ),
+        actions: const [CartBadge(), SizedBox(width: 8)],
       ),
-      body: ListView(
-        children: books.map((b) {
-          debugPrint('row ${b.title}');
-          return ListTile(
-            title: Text(b.title),
-            subtitle: Text(b.author),
-            trailing: cart.contains(b)
-                ? const Text('Added')
-                : OutlinedButton(
-                    onPressed: () => onAdd(b),
-                    child: const Text('Add'),
-                  ),
-          );
-        }).toList(),
-      ),
+      body: ListView(children: [for (final b in shown) _BookRow(b)]),
+    );
+  }
+}
+
+class _BookRow extends StatelessWidget {
+  const _BookRow(this.book);
+
+  final Book book;
+
+  @override
+  Widget build(BuildContext context) {
+    final added = context.select<Cart, bool>((c) => c.qtyOf(book) > 0);
+    return ListTile(
+      title: Text(book.title),
+      subtitle: Text(book.author),
+      trailing: added
+          ? const Text('Added')
+          : OutlinedButton(
+              onPressed: () {
+                final ok = context.read<Cart>().add(book);
+                if (ok) {
+                  ScaffoldMessenger.of(context)
+                    ..hideCurrentSnackBar()
+                    ..showSnackBar(
+                      const SnackBar(
+                        content: Text('Added'),
+                        duration: Duration(seconds: 1),
+                      ),
+                    );
+                }
+              },
+              child: const Text('Add'),
+            ),
     );
   }
 }
